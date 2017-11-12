@@ -1,0 +1,37 @@
+﻿@model GuildCars.Models.ViewModels.ModelVM
+
+@{
+    ViewBag.Title = "Add Model";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Add Model</h3>
+        @*@Html.ActionLink("Return to List", "List", "Make")*@
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3">
+        @using (Html.BeginForm("Add", "Model", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label>Make</label>
+                @Html.DropDownListFor(m=>m.MakeId, Model.MakeItems, "-Choose one-", new { @class = "form-control"})
+                <label>Description</label>
+                @Html.TextBoxFor(s => s.Description, new { @class = "form-control", placeholder = "Description" })
+                @if (!@Model.Result.Success)
+                {
+                    <div class="divError">
+                        <b>
+                            @Html.DisplayFor(m => m.Result.ErrorMessage)
+                        </b>
+                    </div>
+                }
+                <div class="divSave">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    @Html.ActionLink("Cancel", "List", "Model", null, new { @class = "btn btn-info" })
+                </div>
+            </div>
+        }
+    </div>
+</div>      

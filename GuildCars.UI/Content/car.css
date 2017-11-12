@@ -1,0 +1,38 @@
+﻿body {
+    background-color:aliceblue
+}
+
+.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+
+.carousel-content {
+    color: black;
+    display: table;
+    margin: auto;
+}
+
+#myNews {
+    width: 100%;
+    height: auto;
+    padding-bottom: 35px;
+}
+
+#nav li:hover > ul {
+    display: block;
+}
+
+button{
+    width: 70px;
+}
+
+.divSave{
+    margin-top: 10px;
+    text-align:right;
+}
+
+.divError {
+    margin-top:10px; 
+    color:red
+}

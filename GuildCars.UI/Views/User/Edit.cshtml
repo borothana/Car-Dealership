@@ -1,0 +1,47 @@
+﻿@model GuildCars.Models.User
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Edit User</h3>
+        @Html.ActionLink("Return to List", "List", "User")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Edit", "User", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.UserName)
+            @Html.HiddenFor(m => m.IsActive)
+            var tmp = Model;
+            if (@tmp.IsActive == true)
+            {
+                    <p>
+                        Are you sure that you wish to deactivate the user @Html.DisplayFor(m => m.UserName)?
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        Are you sure that you wish to reactivate the user @Html.DisplayFor(m => m.UserName)?
+                    </p>
+                }
+
+
+            
+                if (@tmp.IsActive == true)
+                {
+                    <button type="submit" class="btn btn-sm btn-danger">Deactivate</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-sm btn-danger">Activate</button>
+                }
+                @Html.ActionLink("Cancel", "List", "User", null, new { @class = "btn btn-sm btn-info" })
+        }
+    </div>
+</div> 
+

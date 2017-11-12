@@ -1,0 +1,22 @@
+﻿@model GuildCars.Models.User
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Delete User</h3>
+        @Html.ActionLink("Return to List", "List", "User")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Delete", "User", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.Id)
+            <p>Are you sure that you wish to delete the user @Html.DisplayFor(m => m.UserName)?</p>
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            @Html.ActionLink("Cancel", "List", "User", null, new { @class = "btn btn-sm btn-info" })
+        }
+    </div>
+</div> 

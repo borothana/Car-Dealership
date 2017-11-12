@@ -9,7 +9,7 @@ using GuildCars.Datas;
 
 namespace SCMS.Datas
 {
-    public class SCMSFactory
+    public class CarFactory
     {
         public static ICar Create()
         {

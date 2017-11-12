@@ -1,0 +1,27 @@
+﻿@model GuildCars.Models.State
+
+@{
+    ViewBag.Title = "Add State";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Add State</h3>
+        @Html.ActionLink("Return to List", "List", "State")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Add", "State", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label>State Abbreviation</label>
+                @Html.TextBoxFor(s => s.StateAbbreviation, new { @class = "form-control", placeholder = "State Abbreviation" })
+                <label>State</label>
+                @Html.TextBoxFor(s => s.StateName, new { @class = "form-control", placeholder = "State" })
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                @Html.ActionLink("Cancel", "List", "Contact", null, new { @class = "btn btn-sm btn-info" })               
+            </div>
+        }
+    </div>
+</div>      

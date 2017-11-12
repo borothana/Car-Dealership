@@ -1,0 +1,43 @@
+﻿@model GuildCars.Models.ViewModels.LoginVM
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<title>Login</title>
+
+<br />
+<div class="container" style="margin-top:150px" >
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">Login</h4>
+            </div>
+            @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <div class="panel-body">
+                        <label>User Name</label>
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "User Name" })
+                        <label>Password</label>
+                        @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control", placeholder = "Password" })
+                        @if (@Model.Result.Success)
+                        {
+                            <div class="divError">
+                                <b>
+                                    @Html.DisplayFor(m => m.Result.ErrorMessage)
+                                </b>
+                            </div>
+                        }
+                        <hr />
+                        <div class="divSave">
+                            <button class="btn btn-primary">Login</button>
+                            @Html.ActionLink("Cancel", "Home", "Home", null, new { @class = "btn btn-info" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model List<GuildCars.Models.ViewModels.MakeVM>
+
+@{
+    ViewBag.Title = "Make";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Make</h2>
+        @Html.ActionLink("Add Make", "Add", "Make", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-striped" style="width: auto;">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@c.Description</td>
+                        <td>@c.AddUser.UserName</td>
+                        <td>@c.AddDate.ToString("MMMM dd, yyyy")</td>
+                        <td>@Html.ActionLink("Edit", "Edit", "Make", new { makeId = c.MakeId }, null)</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Make", new { makeId = c.MakeId }, null)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model GuildCars.Models.ViewModels.SpecialVM
+
+@{
+    ViewBag.Title = "Add Special";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Add Special</h3>
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3">
+        @using (Html.BeginForm("Add", "Special", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label>Title</label>
+                @Html.TextBoxFor(m=>m.Title, new { @class = "form-control", placeholder = "Title"})
+                <label>Description</label>
+                @Html.TextAreaFor(s => s.Description, new { @class = "form-control", placeholder = "Description" })
+                @if (!@Model.Result.Success)
+                {
+                    <div class="divError">
+                        <b>
+                            @Html.DisplayFor(m => m.Result.ErrorMessage)
+                        </b>
+                    </div>
+                }
+                <div class="divSave">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    @Html.ActionLink("Cancel", "List", "Special", null, new { @class = "btn btn-info" })
+                </div>
+            </div>
+        }
+    </div>
+</div>      

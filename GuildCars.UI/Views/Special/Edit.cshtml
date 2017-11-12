@@ -1,0 +1,38 @@
+﻿@model GuildCars.Models.ViewModels.SpecialVM
+
+@{
+    ViewBag.Title = "Edit Special";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Edit Special</h3>
+        @*@Html.ActionLink("Return to List", "List", "Make")*@
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3">
+        @using (Html.BeginForm("Edit", "Special", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.HiddenFor(m => m.SpecialId)
+                <label>Title</label>
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Title" })
+                <label>Description</label>
+                @Html.TextAreaFor(s => s.Description, new { @class = "form-control", placeholder = "Description" })
+                @if (!@Model.Result.Success)
+                {
+                    <div class="divError">
+                        <b>
+                            @Html.DisplayFor(m => m.Result.ErrorMessage)
+                        </b>
+                    </div>
+                }
+                <div class="divSave">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    @Html.ActionLink("Cancel", "List", "Model", null, new { @class = "btn btn-info" })
+                </div>
+            </div>
+        }
+    </div>
+</div>      

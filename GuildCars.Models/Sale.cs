@@ -19,10 +19,9 @@ namespace GuildCars.Models
         public string StateAbbreviation { get; set; }
         public decimal PurchasePrice { get; set; }
         public char PurchaseType { get; set; }
-        public string UserId { get; set; }
-        public string AddUser { get; set; }
+        public string AddUserId { get; set; }
         public DateTime AddDate { get; set; }
-        public string EditUser { get; set; }
+        public string EditUserId { get; set; }
         public DateTime EditDate { get; set; }
 
         public PostalCode PostalCode { get; set; }

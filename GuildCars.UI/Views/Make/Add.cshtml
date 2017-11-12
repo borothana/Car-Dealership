@@ -1,0 +1,37 @@
+﻿@model GuildCars.Models.ViewModels.MakeVM
+
+@{
+    ViewBag.Title = "Add Make";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Add Make</h3>
+        @*@Html.ActionLink("Return to List", "List", "Make")*@
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3">
+        @using (Html.BeginForm("Add", "Make", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.HiddenFor(m=>m.Result)
+                <label>Description</label>
+                @Html.TextBoxFor(s => s.Description, new { @class = "form-control", placeholder = "Description" })
+                @if (!@Model.Result.Success)
+                {
+                    <div class="divError">
+                        <b>
+                            @Html.DisplayFor(m => m.Result.ErrorMessage)
+                        </b>
+                    </div>
+                }
+                <hr />
+                <div class="divSave">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    @Html.ActionLink("Cancel", "List", "Make", null, new { @class = "btn btn-info" })
+                </div>
+            </div>
+        }
+    </div>
+</div>      

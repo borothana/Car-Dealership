@@ -1,0 +1,41 @@
+﻿@model List<GuildCars.Models.Contact>
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Contact Us</h2>
+        @Html.ActionLink("Add Contact", "Add", "Contact", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-striped" style="width: auto;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@c.Name</td>
+                        <td>@c.Email</td>
+                        <td>@c.Phone</td>
+                        <td>@c.Message</td>
+                        <td>@Html.ActionLink("Edit", "Edit", "Contact", new { contactId = c.ContactId }, null)</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Contact", new { contactId = c.ContactId }, null)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GuildCars.Models.User>
+
+@{
+    ViewBag.Title = "ListUser";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-9">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>User List</h4>
+                <p>@Html.ActionLink("Add a User", "Add", "User", null, new { @class = "btn btn-primary" })</p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Active</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tmpUser in Model)
+                        {
+                            <tr>
+                                @Html.HiddenFor(Model => @tmpUser.UserName)
+                                <td>@tmpUser.UserName </td>
+                                <td>@Html.CheckBoxFor(Model => @tmpUser.IsActive, new { disabled = "disabled" })</td>
+                                <td>@Html.ActionLink(tmpUser.IsActive == true? "Disable" : "Enable", "Edit", "User", new { userName = tmpUser.UserName }, null)</td>
+                                <td>@Html.ActionLink("Delete", "Delete", "User", new { userName = tmpUser.UserName }, null)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

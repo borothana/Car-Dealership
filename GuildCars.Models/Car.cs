@@ -23,9 +23,9 @@ namespace GuildCars.Models
         public string Description { get; set; }
         public byte[] Picture { get; set; }
 
-        public string AddUser { get; set; }
+        public string AddUserId { get; set; }
         public DateTime AddDate { get; set; }
-        public string EditUser { get; set; }
+        public string EditUserId { get; set; }
         public DateTime EditDate { get; set; }
     }
 }

@@ -1,0 +1,32 @@
+﻿@model GuildCars.Models.ViewModels.SpecialVM
+@{
+    ViewBag.Title = "Delete Special";
+}
+
+<div class="row">
+    <div class="col-xs-4">
+        <h3>Delete Special</h3>
+        @*@Html.ActionLink("Return to List", "List", "Make")*@
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4">
+        @using (Html.BeginForm("Delete", "Special", FormMethod.Post))
+        {
+            @Html.HiddenFor(c => c.SpecialId)
+            <p>Are you sure that you wish to delete @Html.DisplayFor(c=>c.Description)?</p>
+            if (!@Model.Result.Success)
+            {
+                <div class="divError">
+                    <b>
+                        @Html.DisplayFor(m => m.Result.ErrorMessage)
+                    </b>
+                </div>
+            }
+            <div class="divSave">
+                <button type="submit" class="btn btn-danger">Delete</button>
+                @Html.ActionLink("Cancel", "List", "Special", null, new { @class = "btn btn-info" })
+            </div>
+        }
+    </div>
+</div>     

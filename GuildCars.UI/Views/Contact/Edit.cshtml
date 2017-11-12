@@ -1,0 +1,32 @@
+﻿@model GuildCars.Models.Contact
+
+@{
+    ViewBag.Title = "Add Contact";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Add Contact</h3>
+        @Html.ActionLink("Return to List", "List", "Contact")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Edit", "Contact", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.HiddenFor(m=>m.ContactId)
+                <label>Name</label>
+                @Html.TextBoxFor(s => s.Name, new { @class = "form-control", placeholder = "Name" })
+                <label>Email</label>
+                @Html.TextBoxFor(s => s.Email, new { @class = "form-control", placeholder = "Name" })
+                <label>Phone</label>
+                @Html.TextBoxFor(s => s.Phone, new { @class = "form-control", placeholder = "Name" })
+                <label>Message</label>
+                @Html.TextAreaFor(s => s.Message, new { @class = "form-control", placeholder = "Name" })
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+            @Html.ActionLink("Cancel", "List", "Contact", null, new { @class = "btn btn-sm btn-info" })
+        }
+    </div>
+</div>      
