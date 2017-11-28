@@ -1,0 +1,88 @@
+﻿@model GuildCars.Models.ViewModels.SaleVM
+@{
+    ViewBag.Title = "Sale";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Sale</h2>
+    </div>
+</div>
+
+<div id="divDetail" class="container">
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Sale Information</h2>
+    </div>
+</div>
+
+<div id="divError"></div>
+<div class="container" id="divAdd">
+    @using (Html.BeginForm("Purchase", "Sale", FormMethod.Post))
+    {
+        <input type="hidden" id="CarId" />
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="CustomerName">Name</label>
+                @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control", placeholder = "Customer Name", required = "required" })
+            </div>
+            <div class="col-xs-4">
+                <label for="Phone">Phone</label>
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone", required = "required" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="Email">Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", required = "required" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="Street1">Street 1</label>
+                @Html.TextBoxFor(m => m.Street1, new { @class = "form-control", placeholder = "Street 1", required = "required" })
+            </div>
+            <div class="col-xs-4">
+                <label>Street 2</label>
+                @Html.TextBoxFor(m => m.Street2, new { @class = "form-control", placeholder = "Street 2" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="City">City</label>
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "City", required = "required" })
+            </div>
+            <div class="col-xs-4">
+                <label for="State">State</label>
+                @Html.DropDownListFor(m => m.State, Model.StateItems, null, new { @class = "form-control", required = "required" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="ZipCode">Zipcode</label>
+                @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", placeholder = "Zipcode", required = "required" })
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="PurchasePrice">Purchase Price</label>
+                <input type="number" id="PurchasePrice" min="1" class = "form-control" placeholder = "Purchase Price"  required />
+            </div>
+            <div class="col-xs-4">
+                <label for="PurchaseType">Purchase Type</label>
+                @Html.DropDownListFor(m => m.PurchaseType, Model.PurchaseTypeItems, null, new { @class = "form-control", required = "required" })
+            </div>
+        </div>
+        <div class="row divSave">
+            <div class="col-xs-8">
+                <input type="button" class="btn btn-detail" onclick="Purchase()" value="Save" />
+            </div>
+        </div>
+    }
+</div>
+

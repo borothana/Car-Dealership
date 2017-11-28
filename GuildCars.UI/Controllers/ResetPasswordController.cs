@@ -6,10 +6,10 @@ using System.Web.Mvc;
 using GuildCars.Models.ViewModels;
 using GuildCars.Models.Interface;
 using GuildCars.Datas;
-using SCMS.Datas;
 
 namespace SCMS.UI.Controllers
 {
+    [Authorize(Roles = "admin,sale")]
     public class ResetPasswordController : Controller
     {
         ICar _repo = CarFactory.Create();
@@ -24,13 +24,20 @@ namespace SCMS.UI.Controllers
 
         [HttpPost]
         public ActionResult ResetPassword(ResetPasswordVM model)
-        { 
-            if (!ModelState.IsValid)
+        {
+            if (ModelState.IsValid)
             {
-                return View(model);
+                if (_repo.ChangePassword(model.UserName, model.Password, model.NewPassword))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("PasswordHash", "Incorrect password");
+                }
             }
-            _repo.ChangePassword(model.UserName, model.Password, model.NewPassword);
-            return RedirectToAction("Home","Home");
+
+            return View(model);
         }
     }
 }

@@ -7,36 +7,37 @@ using GuildCars.Models.ViewModels;
 using GuildCars.Models.Interface;
 using GuildCars.Models;
 using GuildCars.Datas;
-using SCMS.Datas;
 
 namespace GuildCars.UI.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class UserController : Controller
     {
         ICar _repo = CarFactory.Create();
 
-
         public ActionResult List()
         {
-            List<User> model = _repo.GetUserListByRole("admin");
+            List<User> model = _repo.GetUserList();
             return View(model);
         }
 
         public ActionResult Add()
         {
-            User model = new User();
+            UserVM model = new UserVM();
+            model.GetRoleItems();
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Add(User model)
+        public ActionResult Add(UserVM model)
         {
             if (!ModelState.IsValid)
             {
+                model.GetRoleItems();
                 return View(model);
             }
-            model.IsActive = true;
-            if( _repo.AddUser(model, "admin") != "")
+            
+            if( _repo.AddUser(model, model.Role).Result.Success)
             {
                 return RedirectToAction("List");
             }
@@ -63,18 +64,18 @@ namespace GuildCars.UI.Controllers
             return RedirectToAction("List");
         }
 
-        [HttpGet]
-        public ActionResult Delete(string userName)
-        {
-            User user = _repo.GetUserByUserName(userName);
-            return View(user);
-        }
+        //[HttpGet]
+        //public ActionResult Delete(string userName)
+        //{
+        //    User user = _repo.GetUserByUserName(userName);
+        //    return View(user);
+        //}
 
-        [HttpPost]
-        public ActionResult Delete(User model)
-        {
-            _repo.DeleteUser(model.Id);
-            return RedirectToAction("List"); 
-        }
+        //[HttpPost]
+        //public ActionResult Delete(User model)
+        //{
+        //    _repo.DeleteUser(model.Id);
+        //    return RedirectToAction("List"); 
+        //}
     }
 }

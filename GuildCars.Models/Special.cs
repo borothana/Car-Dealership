@@ -11,5 +11,8 @@ namespace GuildCars.Models
         public int SpecialId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public DateTime FDate { get; set; }
+        public DateTime TDate { get; set; }
+        public byte[] image { get; set; }
     }
 }

@@ -4,25 +4,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace GuildCars.Models.Interface
 {
     public interface ICar
     {
+        #region "Other"
         Response ReturnSuccess();
+        byte[] ConvertImgToByte(HttpPostedFileBase file);
+        //String ConvertByteToImg(byte[] img);
+        #endregion
 
+        #region "Car"
+        List<CarVM> GetCarVMList(string filter, int minPrice, int maxPrice, int minYear, int maxYear, string type);
+        List<CarVM> GetCarVMList();
         List<Car> GetCarList();
         Car GetCarById(int carId);
-        int AddCar(Car car);
-        bool UpdateCar(Car car);
+        CarVM GetCarVMById(int carId);
+        CarVM AddCar(CarVM carVM);
+        CarVM UpdateCar(CarVM carVM);
         bool DeleteCar(int carId);
+        Car ConvertVMToCar(CarVM model);
+        CarVM ConvertCarToVM(Car model);
+        #endregion
 
+        #region "Contact"
         List<Contact> GetContactList();
+        List<ContactVM> GetContactVMList();
         Contact GetContactById(int contactId);
-        int AddContact(Contact contact);
-        bool UpdateContact(Contact contact);
-        bool DeleteContact(int contactId);
+        ContactVM AddContact(ContactVM contact);
+        ContactVM UpdateContact(ContactVM contact);
+        Response DeleteContact(ContactVM contact);
+        ContactVM ConvertContactToVM(Contact input);
+        Contact ConvertVMToContact(ContactVM input);
+        #endregion
 
+        #region "Make"
         List<Make> GetMakeList();
         List<MakeVM> GetMakeVMList();
         Make GetMakeById(int makeId);
@@ -31,8 +49,9 @@ namespace GuildCars.Models.Interface
         Response DeleteMake(MakeVM make);
         MakeVM ConvertMakeToVM(Make input);
         Make ConvertVMToMake(MakeVM input);
+        #endregion
 
-
+        #region "Model"
         List<Model> GetModelList();
         List<ModelVM> GetModelVMList();
         Model GetModelById(int modelId);
@@ -41,21 +60,21 @@ namespace GuildCars.Models.Interface
         Response DeleteModel(ModelVM model);
         ModelVM ConvertModelToVM(Model input);
         Model ConvertVMToModel(ModelVM input);
+        #endregion
 
-        List<PostalCode> GetPostalCodeList();
-        PostalCode GetPostalCodeById(string postalCode);
-        bool AddPostalCode(PostalCode postalCode);
-        bool UpdatePostalCode(PostalCode postalCode);
-        bool DeletePostalCode(string postalCode);
-
+        #region "Sale"
         List<Sale> GetSaleList();
+        List<SaleVM> GetSaleVMList();
         List<Sale> GetSaleListBySaleman(string userId);
         Sale GetSaleById(int saleId);
         int AddSale(Sale sale);
         bool UpdateSale(Sale sale);
         bool DeleteSale(int saleId);
+        #endregion
 
+        #region "Special"
         List<Special> GetSpecialList();
+        List<SpecialVM> GetSpecialVMList(DateTime date);
         List<SpecialVM> GetSpecialVMList();
         Special GetSpecialById(int specialId);
         SpecialVM AddSpecial(SpecialVM special);
@@ -63,26 +82,29 @@ namespace GuildCars.Models.Interface
         Response DeleteSpecial(SpecialVM special);
         SpecialVM ConvertSpecialToVM(Special input);
         Special ConvertVMToSpecial(SpecialVM input);
-
-        List<State> GetStateList();
-        State GetStateById(string stateAbbreviation);
-        bool AddState(State state);
-        bool UpdateState(State state);
-        bool DeleteState(string stateAbbreviation);
+        #endregion
 
         #region "User"
         List<User> GetUserList();
         User GetUserById(string userId);
         User GetUserByUserName(string userName);
         List<User> GetUserListByRole(string role);
-        string AddUser(User user, string role);
-        Task<bool> DeactivateUser(string userId);
-        Task<bool> ReactivateUser(string userId);
+        UserVM AddUser(UserVM user, string role);
+        bool DeactivateUser(string userId);
+        bool ReactivateUser(string userId);
         bool ChangePassword(string userId, string currentPassword, string newPassword);
-        Task<bool> UpdateUser(User user);
-        Task<bool> DeleteUser(string userId);
+        bool UpdateUser(User user);
+        bool DeleteUser(string userId);
         bool Login(string userId, string password);
         bool Logout();
+        User ConvertVMToUser(UserVM input);
+        UserVM ConvertUserToVM(User input);
+
+        #endregion
+
+        #region "Report"
+        List<InventoryReportVM> GetInventoryReport();
+        List<SaleReportVM> GetSaleReport(string UserName, DateTime fd, DateTime td);
         #endregion
     }
 }

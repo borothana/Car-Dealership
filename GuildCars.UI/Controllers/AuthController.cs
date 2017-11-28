@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GuildCars.Models.ViewModels;
 using GuildCars.Models.Interface;
-using SCMS.Datas;
+using GuildCars.Datas;
 
 namespace GuildCars.UI.Controllers
 {

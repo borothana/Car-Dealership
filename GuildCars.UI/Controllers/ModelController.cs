@@ -1,7 +1,7 @@
 ﻿using GuildCars.Models;
 using GuildCars.Models.Interface;
 using GuildCars.Models.ViewModels;
-using SCMS.Datas;
+using GuildCars.Datas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace GuildCars.UI.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ModelController : Controller
     {
         ICar _repo = CarFactory.Create();

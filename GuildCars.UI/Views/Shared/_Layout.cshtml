@@ -16,6 +16,8 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL4qC02sD3ZZL36YbYct2aeawL5nwSP1o&callback=initMap" type="text/javascript"></script>
+    <link href="~/Content/car.css" rel="stylesheet" />
 </head>
 
 <body style="position: relative !important;">
@@ -24,13 +26,14 @@
             <ul class="nav navbar-nav">
                 <li><a href=""><span class="glyphicon glyphicon-home"></span></a></li>
                 <li>@Html.ActionLink("Home", "Home", "Home")</li>
-                <li>@Html.ActionLink("New Inventory", "List", "NewInventory")</li>
-                <li>@Html.ActionLink("Used Inventory", "List", "UsedInventory")</li>
-                <li>@Html.ActionLink("Specials", "List", "SpecialShow")</li>
+                <li>@Html.ActionLink("New Inventory", "New", "Inventory")</li>
+                <li>@Html.ActionLink("Used Inventory", "Used", "Inventory")</li>
+                <li>@Html.ActionLink("Specials", "Show", "Special")</li>
                 <li>@Html.ActionLink("Contact", "Add", "Contact")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li>@Html.ActionLink("Sale", "List", "Sale")</li>
+                    <li>@Html.ActionLink("Change Password", "ResetPassword", "ResetPassword")</li>
 
 
                     if (User.IsInRole("admin"))
@@ -42,13 +45,16 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Vehicle", "List", "Vehicle")</li>
-                                <li>@Html.ActionLink("User", "List", "User")</li>
-                                <li>@Html.ActionLink("Change Password", "ResetPassword", "ResetPassword")</li>
+                                <li>@Html.ActionLink("Special", "List", "Special")</li>
+                                <li  role="separator" class="divider"></li>
+                                <li>@Html.ActionLink("Contact", "List", "Contact")</li>
+                                <li>@Html.ActionLink("Sale Report", "Sale", "Report")</li>
+                                <li>@Html.ActionLink("Inventory Report", "Inventory", "Report")</li>
+                                <li role="separator" class="divider"></li>
                                 <li>@Html.ActionLink("Make", "List", "Make")</li>
                                 <li>@Html.ActionLink("Model", "List", "Model")</li>
-                                <li>@Html.ActionLink("Special", "List", "Special")</li>
-                                <li>@Html.ActionLink("Sale Report", "List", "SaleReport")</li>
-                                <li>@Html.ActionLink("Inventory Report", "List", "Inventory Report")</li>
+                                <li>@Html.ActionLink("User", "List", "User")</li>
+
                             </ul>
                         </li>
                     }
@@ -61,12 +67,14 @@
             </ul>
         </div>
     </div>
-    <div class="container body-content">
+    
+    <div class="container body-content" style="margin-top:50px">
         @RenderBody()
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <link href="~/Content/car.css" rel="stylesheet" />
+    <script src="~/Scripts/car.js"></script>
 </body>
 </html>

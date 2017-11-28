@@ -71,6 +71,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -110,13 +111,9 @@
     <Compile Include="CarRepositoryMock.cs" />
     <Compile Include="CurrentUser.cs" />
     <Compile Include="DBContext\CarDBContext.cs" />
-    <Compile Include="Migrations\201711051927071_Init.cs" />
-    <Compile Include="Migrations\201711051927071_Init.Designer.cs">
-      <DependentUpon>201711051927071_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711120327454_Init1.cs" />
-    <Compile Include="Migrations\201711120327454_Init1.Designer.cs">
-      <DependentUpon>201711120327454_Init1.cs</DependentUpon>
+    <Compile Include="Migrations\201711231636468_Init.cs" />
+    <Compile Include="Migrations\201711231636468_Init.Designer.cs">
+      <DependentUpon>201711231636468_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,11 +130,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711051927071_Init.resx">
-      <DependentUpon>201711051927071_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711120327454_Init1.resx">
-      <DependentUpon>201711120327454_Init1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711231636468_Init.resx">
+      <DependentUpon>201711231636468_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GuildCars.Models;
 
-namespace SCMS.Datas
+namespace GuildCars.Datas
 {
     public static class CurrentUser
     {

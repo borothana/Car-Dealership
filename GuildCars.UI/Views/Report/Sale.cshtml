@@ -1,0 +1,52 @@
+﻿@model GuildCars.Models.ViewModels.SaleReportVMPage
+@{
+    ViewBag.Title = "Sale";
+}
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Sale Report</h2>
+    </div>
+</div>
+
+<div class="container form-inline">
+    <div class="row divSearch">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Sale", "Report", FormMethod.Post))
+            {
+                <label>User</label>
+                @Html.DropDownListFor(m=>m.UserId, Model.UserItems, "Filer by User", new { @class = "form-control"})
+                <label>From Date</label>
+                @Html.EditorFor(m => m.FDate, new { @class = "form-control", placeholder = "Display Start Date" })
+                <label>To Date</label>
+                @Html.EditorFor(m => m.TDate, new { @class = "form-control", placeholder = "Display End Date" })
+                <button type="submit" class="btn btn-detail">Search</button>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <h3>Search Result</h3>
+        <div class="col-xs-6">
+            <table class="table table-striped" style="width: auto;">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Total Sales</th>
+                        <th>Total Vehicles</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model.SaleReportVM)
+                    {
+                        <tr>
+                            <td>@c.User.UserName</td>
+                            <td>@c.Amount.ToString("$ 0.00")</td>
+                            <td>@c.QTY</td>
+                        </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

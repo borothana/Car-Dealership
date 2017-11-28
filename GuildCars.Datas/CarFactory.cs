@@ -7,7 +7,7 @@ using GuildCars.Models.Interface;
 using System.Configuration;
 using GuildCars.Datas;
 
-namespace SCMS.Datas
+namespace GuildCars.Datas
 {
     public class CarFactory
     {

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<GuildCars.Models.ViewModels.SpecialVM>
+@{
+    ViewBag.Title = "Show";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Special</h2>
+        @*@Html.ActionLink("Return home", "Home", "Home")*@
+    </div>
+</div>
+
+<div class="container">
+    @foreach(var s in Model)
+    {
+        <div class="row divShow">
+            <div class="col-xs-2">    
+                <img src=@s.ImageSrc alt=@s.Title class="imgShow" />
+                @*@if (@s.Image != null)
+                {                    
+                    <img src="data:image;base64,@System.Convert.ToBase64String(s.Image)" alt=@s.Description class="imgShow"/>
+                }
+                else
+                {
+                    <img src="http://localhost:50635/Content/Images/special.jpg" alt="special events.jpg" class="imgShow"/>
+                }*@
+            </div>
+            <div class="col-xs-10">
+                <b>@s.Title</b><br />
+                <span>@s.Description</span>
+            </div>
+        </div>
+        
+    }
+</div>
+

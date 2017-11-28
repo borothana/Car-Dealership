@@ -11,7 +11,7 @@ using System.Runtime.Remoting.Contexts;
 using GuildCars.Datas.DBContext;
 using Microsoft.AspNet.Identity.Owin;
 
-namespace SCMS.Datas.App_Start
+namespace GuildCars.Datas.App_Start
 {
     public class Startup
     {

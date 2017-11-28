@@ -12,14 +12,26 @@
 </div>
 <div class="row">
     <div class="col-xs-3">
-        @using (Html.BeginForm("Edit", "Special", FormMethod.Post))
+        @using (Html.BeginForm("Edit", "Special", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmUpload" }))
         {
             <div class="form-group">
                 @Html.HiddenFor(m => m.SpecialId)
                 <label>Title</label>
                 @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Title" })
                 <label>Description</label>
-                @Html.TextAreaFor(s => s.Description, new { @class = "form-control", placeholder = "Description" })
+                @Html.TextAreaFor(s => s.Description, new { @class = "form-control", placeholder = "Description" })                
+                <label>Display Start Date</label>@Html.ValidationMessageFor(m => m.FDate)
+                @Html.EditorFor(m => m.FDate, null, new { @class = "form-control" })
+                <label>Display End Date</label>@Html.ValidationMessageFor(m => m.TDate)
+                @Html.EditorFor(m => m.TDate, null, new { @class = "form-control" })
+
+
+                <div class="form-group">
+                    <label>Select File:</label>
+                    @Html.TextBoxFor(m => m.UploadFile, new { type = "file", @class = "form-control" })
+                </div>
+
+
                 @if (!@Model.Result.Success)
                 {
                     <div class="divError">

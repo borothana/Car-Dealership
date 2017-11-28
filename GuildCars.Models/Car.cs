@@ -10,10 +10,10 @@ namespace GuildCars.Models
     {
         public int CarId { get; set; }
         public int ModelId { get; set; }
-        public char Type { get; set; }
-        public char BodyStyle { get; set; }
+        public string Type { get; set; }
+        public string BodyStyle { get; set; }
         public int ReleaseYear { get; set; }
-        public char Transmision { get; set; }
+        public string Transmission { get; set; }
         public string Color { get; set; }
         public string Interior { get; set; }
         public int Mileage { get; set; }
@@ -21,6 +21,7 @@ namespace GuildCars.Models
         public decimal MSRP { get; set; }
         public decimal SalePrice { get; set; }
         public string Description { get; set; }
+        public bool IsFeature { get; set; }
         public byte[] Picture { get; set; }
 
         public string AddUserId { get; set; }

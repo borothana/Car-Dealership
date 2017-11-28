@@ -1,7 +1,7 @@
 ﻿using GuildCars.Models;
 using GuildCars.Models.Interface;
 using GuildCars.Models.ViewModels;
-using SCMS.Datas;
+using GuildCars.Datas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +15,21 @@ namespace GuildCars.UI.Controllers
         ICar _repo = CarFactory.Create();
 
         [HttpGet]
+        public ActionResult Show()
+        {
+            List<SpecialVM> model = _repo.GetSpecialVMList();
+            return View(model);
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet]
         public ActionResult List()
         {
             List<SpecialVM> model = _repo.GetSpecialVMList();
             return View(model);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult Add()
         {
@@ -28,6 +37,7 @@ namespace GuildCars.UI.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Add(SpecialVM model)
         {
@@ -54,6 +64,7 @@ namespace GuildCars.UI.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult Edit(int specialId)
         {
@@ -61,6 +72,7 @@ namespace GuildCars.UI.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Edit(SpecialVM model)
         {
@@ -88,6 +100,7 @@ namespace GuildCars.UI.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult Delete(int specialId)
         {
@@ -95,6 +108,7 @@ namespace GuildCars.UI.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Delete(SpecialVM model)
         {

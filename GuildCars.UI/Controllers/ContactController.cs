@@ -1,6 +1,7 @@
 ﻿using GuildCars.Models;
 using GuildCars.Models.Interface;
-using SCMS.Datas;
+using GuildCars.Models.ViewModels;
+using GuildCars.Datas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,80 +14,96 @@ namespace GuildCars.UI.Controllers
     {
         ICar _repo = CarFactory.Create();
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult List()
         {
-            var model = _repo.GetContactList();
+            var model = _repo.GetContactVMList();
             return View(model);
         }
-
+        
         [HttpGet]
         public ActionResult Add()
         {
-            return View(new Contact());
+            string query = Request.QueryString["id"];
+            int id = 0;
+            int.TryParse(query, out id);
+
+            ContactVM model = new ContactVM();
+            Car car = _repo.GetCarById(id);
+            if (car != null)
+            {
+                model.Message = car.VinNo;
+            }            
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Add(Contact model)
+        public ActionResult Add(ContactVM model)
         {
             if (ModelState.IsValid)
             {
-                if (_repo.AddContact(model) > 0)
+                var tmp = _repo.AddContact(model);
+                if (tmp != null && tmp.Result.Success)
                 {
-                    return RedirectToAction("List");
+                    return RedirectToAction("Success");
                 }
                 else
                 {
-                    ModelState.AddModelError("Contact", "Cannot add contact");
+                    ModelState.AddModelError("Contact", "Cannot save contact");
                 }
             }
             return View(model);
         }
 
-        [HttpGet]
-        public ActionResult Edit(int contactId)
-        {
-            Contact model = _repo.GetContactById(contactId);
-            return View(model);
-        }
+        //[HttpGet]
+        //public ActionResult Edit(int contactId)
+        //{
+        //    ContactVM model = _repo.ConvertContactToVM(_repo.GetContactById(contactId));
+        //    return View(model);
+        //}
 
-        [HttpPost]
-        public ActionResult Edit(Contact model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (_repo.UpdateContact(model))
-                {
-                    return RedirectToAction("List");
-                }
-                else
-                {
-                    ModelState.AddModelError("Contact", "Cannot edit contact");
-                }
-            }
-            return View(model);
-        }
+        //[HttpPost]
+        //public ActionResult Edit(ContactVM model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (_repo.UpdateContact(model).Result.Success)
+        //        {
+        //            return RedirectToAction("Success");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("Contact", "Cannot edit contact");
+        //        }
+        //    }
+        //    return View(model);
+        //}
 
-        [HttpGet]
-        public ActionResult Delete(int contactId)
-        {
-            Contact model = _repo.GetContactById(contactId);
-            return View(model);
-        }
+        //[HttpGet]
+        //public ActionResult Delete(int contactId)
+        //{
+        //    ContactVM model = _repo.ConvertContactToVM(_repo.GetContactById(contactId));
+        //    return View(model);
+        //}
 
-        [HttpPost]
-        public ActionResult Delete(Contact model)
-        {
-            if (_repo.DeleteContact(model.ContactId))
-            {
-                return RedirectToAction("List");
-            }
-            else
-            {
-                ModelState.AddModelError("Category", "Cannot delete contact");
-                return View(model);
-            }
+        //[HttpPost]
+        //public ActionResult Delete(ContactVM model)
+        //{
+        //    if (_repo.DeleteContact(model).Success)
+        //    {
+        //        return RedirectToAction("List");
+        //    }
+        //    else
+        //    {
+        //        ModelState.AddModelError("Contact", "Cannot delete contact");
+        //        return View(model);
+        //    }
+        //}
 
+        public ActionResult Success()
+        {
+            return View();
         }
     }
 }

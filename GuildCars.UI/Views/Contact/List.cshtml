@@ -1,41 +1,29 @@
-﻿@model List<GuildCars.Models.Contact>
+﻿@model IEnumerable<GuildCars.Models.ViewModels.ContactVM>
 
 @{
     ViewBag.Title = "Contact";
 }
 
 <div class="row">
+
     <div class="col-xs-12">
-        <h2>Contact Us</h2>
-        @Html.ActionLink("Add Contact", "Add", "Contact", null, new { @class = "btn btn-primary" })
+        <h2>Contact List</h2>
+        @Html.ActionLink("Return to home", "Home", "Home")
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-12">
-        <table class="table table-striped" style="width: auto;">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Message</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var c in Model)
-                {
-                    <tr>
-                        <td>@c.Name</td>
-                        <td>@c.Email</td>
-                        <td>@c.Phone</td>
-                        <td>@c.Message</td>
-                        <td>@Html.ActionLink("Edit", "Edit", "Contact", new { contactId = c.ContactId }, null)</td>
-                        <td>@Html.ActionLink("Delete", "Delete", "Contact", new { contactId = c.ContactId }, null)</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+
+<div class="container">
+    @foreach (var s in Model)
+    {
+        <div class="row divShow">            
+            <div class="col-xs-8">
+                <b>@s.Name</b><br />
+                <small>
+                    @s.Email - @s.Phone
+                </small><br /><br />
+                <p style="white-space:pre-line">@s.Message</p>
+            </div>
+        </div>
+      
+    }
 </div>

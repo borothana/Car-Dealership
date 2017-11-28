@@ -1,4 +1,4 @@
-﻿@model GuildCars.Models.Contact
+﻿@model GuildCars.Models.ViewModels.ContactVM
 
 @{
     ViewBag.Title = "Add Contact";
@@ -17,16 +17,32 @@
             <div class="form-group">
                 @Html.HiddenFor(m=>m.ContactId)
                 <label>Name</label>
+                @Html.ValidationMessageFor(c => c.Name)
                 @Html.TextBoxFor(s => s.Name, new { @class = "form-control", placeholder = "Name" })
                 <label>Email</label>
-                @Html.TextBoxFor(s => s.Email, new { @class = "form-control", placeholder = "Name" })
+                @Html.ValidationMessageFor(c => c.Email)
+                @Html.TextBoxFor(s => s.Email, new { @class = "form-control", placeholder = "Email" })
                 <label>Phone</label>
-                @Html.TextBoxFor(s => s.Phone, new { @class = "form-control", placeholder = "Name" })
+                @Html.ValidationMessageFor(c => c.Phone)
+                @Html.TextBoxFor(s => s.Phone, new { @class = "form-control", placeholder = "Phone" })
                 <label>Message</label>
-                @Html.TextAreaFor(s => s.Message, new { @class = "form-control", placeholder = "Name" })
+                @Html.ValidationMessageFor(c => c.Message)
+                @Html.TextAreaFor(s => s.Message, new { @class = "form-control", placeholder = "Message" })
             </div>
-            <button type="submit" class="btn btn-sm btn-primary">Save</button>
-            @Html.ActionLink("Cancel", "List", "Contact", null, new { @class = "btn btn-sm btn-info" })
+
+            @if (!@Model.Result.Success)
+                {
+                <div class="divError">
+                    <b>
+                        @Html.DisplayFor(m => m.Result.ErrorMessage)
+                    </b>
+                </div>
+            }
+
+            <div class="divSave">
+                <button type="submit" class="btn btn-primary">Save</button>
+                @Html.ActionLink("Cancel", "List", "Contact", null, new { @class = "btn btn-info" })
+            </div>
         }
     </div>
 </div>      

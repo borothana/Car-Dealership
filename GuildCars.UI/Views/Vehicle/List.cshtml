@@ -1,0 +1,36 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <h2>Admin</h2>
+        <a href="Add">Add a new vehicle</a>
+    </div>
+</div>
+
+<div class="container form-inline">
+    <div class="row divSearch">
+        <b>Quick Search</b>        
+        <div class="row">
+            <div class="col-xs-3">
+                <input type="text" id="txtSearch" name="txtSearch" class="form-control" style="width:100%" placeholder="Enter Make, Model or Year" />
+            </div>
+            <div class="col-xs-3" style="text-align:right">
+                <label>Price</label>
+                <select id="cboMinPrice" class="form-control dropdown-search"></select>
+                <select id="cboMaxPrice" class="form-control dropdown-search"></select>
+            </div>
+
+            <div class="col-xs-3">
+                <label>Year</label>
+                <select id="cboMinYear" class="form-control dropdown-search"></select>
+                <select id="cboMaxYear" class="form-control dropdown-search"></select>
+            </div>
+            <div class="col-xs-2">
+                <button type="submit" id="btnNew" name="btnNew" class="btn btn-search" onclick="GetInventory('S')">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>Search Result</h3>
+<div id="divResult" class="container">
+
+</div>

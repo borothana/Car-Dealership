@@ -1,4 +1,4 @@
-﻿@model GuildCars.Models.Contact
+﻿@model GuildCars.Models.ViewModels.ContactVM
 @{
     ViewBag.Title = "Delete Contact";
 }
@@ -14,9 +14,11 @@
         @using (Html.BeginForm("Delete", "Contact", FormMethod.Post))
         {
             @Html.HiddenFor(c => c.ContactId)
-            <p>Are you sure that you wish to delete @Html.DisplayFor(c=>c.Name)?</p>
-            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-            @Html.ActionLink("Cancel", "List", "Contact", null, new { @class = "btn btn-sm btn-info" })
+            <p>Are you sure that you wish to delete information from @Html.DisplayFor(c=>c.Name)?</p>
+            <div class="divSave">
+                <button type="submit" class="btn btn-primary">Save</button>
+                @Html.ActionLink("Cancel", "List", "Contact", null, new { @class = "btn btn-info" })
+            </div>
         }
     </div>
 </div>     

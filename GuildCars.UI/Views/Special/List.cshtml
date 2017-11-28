@@ -17,6 +17,8 @@
                 <tr>
                     <th>Title</th>
                     <th>Description</th>                    
+                    <th>Display Start</th>
+                    <th>Display End</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -27,6 +29,8 @@
                     <tr>
                         <td>@c.Title</td>
                         <td>@c.Description</td>
+                        <td>@c.FDate.Value.ToString("MMMM dd, yyyy")</td>
+                        <td>@c.TDate.Value.ToString("MMMM dd, yyyy")</td>
                         <td>@Html.ActionLink("Edit", "Edit", "Special", new { specialId = c.SpecialId }, null)</td>
                         <td>@Html.ActionLink("Delete", "Delete", "Special", new { specialId = c.SpecialId }, null)</td>
                     </tr>

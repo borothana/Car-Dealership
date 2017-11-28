@@ -1,0 +1,109 @@
+﻿@model GuildCars.Models.ViewModels.CarVM
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Add Vehicle</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Add", "Vehicle", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmUpload" }))
+        {
+            <div class="form-group">
+                @Html.ValidationSummary(true)
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label>Make</label>@Html.ValidationMessageFor(m => m.MakeId)
+                        @Html.DropDownListFor(m => m.MakeId, Model.MakeItems, null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-xs-4">
+                        <label>Model</label>@Html.ValidationMessageFor(m => m.ModelId)
+                        @Html.DropDownListFor(m => m.ModelId, Model.ModelItems, null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label>Type</label>@Html.ValidationMessageFor(m => m.Type)
+                        @Html.DropDownListFor(m => m.Type, Model.TypeItems, null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-xs-4">
+                        <label>Body Style</label>@Html.ValidationMessageFor(m => m.BodyStyle)
+                        @Html.DropDownListFor(m => m.BodyStyle, Model.BodyStyleItems, null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label>Year</label>@Html.ValidationMessageFor(m => m.ReleaseYear)
+                        @Html.TextBoxFor(m => m.ReleaseYear, null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-xs-4">
+                        <label>Transmission</label>@Html.ValidationMessageFor(m => m.Transmission)
+                        @Html.DropDownListFor(m => m.Transmission, Model.TransmissionItems, null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label>Color</label>@Html.ValidationMessageFor(m => m.Color)
+                        @Html.DropDownListFor(m => m.Color, Model.ColorItems, null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-xs-4">
+                        <label>Interior</label>@Html.ValidationMessageFor(m => m.Interior)
+                        @Html.DropDownListFor(m => m.Interior, Model.InteriorItems, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label>Mileage</label>@Html.ValidationMessageFor(m => m.Mileage)
+                        @Html.TextBoxFor(m => m.Mileage, null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-xs-4">
+                        <label>VIN #</label>@Html.ValidationMessageFor(m => m.VinNo)
+                        @Html.TextBoxFor(m => m.VinNo, null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label>MSRP</label>@Html.ValidationMessageFor(m => m.MSRP)
+                        @Html.TextBoxFor(m => m.MSRP, null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-xs-4">
+                        <label>Sale Price</label>@Html.ValidationMessageFor(m => m.SalePrice)
+                        @Html.TextBoxFor(m => m.SalePrice, null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <label>Description</label>
+                        @Html.TextAreaFor(s => s.Description, new { @class = "form-control", placeholder = "Description" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <label>Select File:</label>
+                        @Html.TextBoxFor(m => m.UploadFile, new { type = "file", @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row divSave">
+                    <div class="col-xs-8">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        @Html.ActionLink("Cancel", "List", "Special", null, new { @class = "btn btn-info" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="~/Scripts/combo.js"></script>
