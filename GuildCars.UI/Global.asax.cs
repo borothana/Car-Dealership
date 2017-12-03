@@ -15,7 +15,6 @@ namespace GuildCars.UI
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            
         }
     }
 }

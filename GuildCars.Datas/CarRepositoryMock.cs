@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System  .Threading.Tasks;
 using GuildCars.Models;
 using GuildCars.Models.Interface;
 using GuildCars.Models.ViewModels;
@@ -21,6 +21,15 @@ namespace GuildCars.Datas
         {
             var request = HttpContext.Current.Request;
             CurrentUrl = "http://" + request.Url.Host + ":" + request.Url.Port;
+
+            var ctx = new DBContext.CarDBContext();
+            var adminDB = ctx.Users.First(u => u.UserName == "admin");
+            var adminMock = _users.First(u => u.UserName == "admin");
+            adminMock.Id = adminDB.Id;
+
+            var saleDB = ctx.Users.First(u => u.UserName == "sale");
+            var saleMock = _users.First(u => u.UserName == "sale");
+            saleMock.Id = saleDB.Id;
         }
 
         static List<User> _users = new List<User>
@@ -29,13 +38,6 @@ namespace GuildCars.Datas
             new User { Id = "8728cb3d-8e99-4da6-bc70-2e7995af34ae", UserName = "sale", Email = "sale@gmail.com", PasswordHash = "12345678", IsActive = true},
             new User { Id = "3", UserName = "Nik", Email = "nik@gmail.com", PasswordHash = "12345678", IsActive = true},
             new User { Id = "4", UserName = "Javier", Email = "javier@gmail.com", PasswordHash = "12345678", IsActive = true}
-        };
-
-        static List<Contact> _contactList = new List<Contact>
-        {
-            new Contact{ ContactId = 1, Name = "Na", Email = "na@gmail.com", Phone = "952 846 1111", Message = "Message 1"},
-            new Contact{ ContactId = 2, Name = "Ko", Email = "ko@gmail.com", Phone = "952 846 2222", Message = "Message 2"},
-            new Contact{ ContactId = 3, Name = "My", Email = "my@gmail.com", Phone = "952 846 3333", Message = "Message 3"},
         };
 
         static List<Make> _makeList = new List<Make>
@@ -76,29 +78,35 @@ namespace GuildCars.Datas
                 Transmission = "M", ModelId = 3, Picture = null, MSRP = 40000, SalePrice = 45000, ReleaseYear = 2015, VinNo = "1HGBH41JXMN109187",
                 AddUserId = "f830d1f6-4c74-4041-a460-05b2c0360f1d", AddDate = DateTime.Parse("11/05/2017 11:30 AM"), IsFeature = true},
             new Car{ CarId = 8, BodyStyle = "S", Color = "red", Description = "Camry SE 2017", Interior = "gray", Mileage = 250, Type = "U",
-                Transmission = "M", ModelId = 3, Picture = null, MSRP = 40000, SalePrice = 55000, ReleaseYear = 2015, VinNo = "1HGBH41JXMN109187",
+                Transmission = "M", ModelId = 3, Picture = null, MSRP = 40000, SalePrice = 55000, ReleaseYear = 2015, VinNo = "1HGBH41JXMN109188",
                 AddUserId = "f830d1f6-4c74-4041-a460-05b2c0360f1d", AddDate = DateTime.Parse("11/05/2017 11:30 AM"), IsFeature = true},
             new Car{ CarId = 9, BodyStyle = "S", Color = "red", Description = "Camry SE 2016", Interior = "gray", Mileage = 350, Type = "U",
-                Transmission = "M", ModelId = 3, Picture = null, MSRP = 40000, SalePrice = 55000, ReleaseYear = 2015, VinNo = "1HGBH41JXMN109187",
+                Transmission = "M", ModelId = 3, Picture = null, MSRP = 40000, SalePrice = 55000, ReleaseYear = 2015, VinNo = "1HGBH41JXMN109189",
                 AddUserId = "f830d1f6-4c74-4041-a460-05b2c0360f1d", AddDate = DateTime.Parse("11/05/2017 11:30 AM"), IsFeature = true},
         };
-
-        static List<Special> _specialList = new List<Special>
-        {
-            new Special{ SpecialId = 1, Title = "Mid-Sale", Description = "Discount for mid-sale....", FDate = DateTime.Parse("11/15/2017"), TDate = DateTime.Parse("12/31/2017"), image = null },
-            new Special{ SpecialId = 2, Title = "New Year", Description = "Discount for New Year....", FDate = DateTime.Parse("11/01/2017"), TDate = DateTime.Parse("12/01/2017"), image = null },
-            new Special{ SpecialId = 3, Title = "Balck Friday", Description = "This Black Friday....", FDate = DateTime.Parse("11/10/2017"), TDate = DateTime.Parse("12/10/2017"), image = null },
-            new Special{ SpecialId = 4, Title = "Mid-Winter Sale", Description = "January is coming, ....", FDate = DateTime.Parse("11/01/2017"), TDate = DateTime.Parse("12/01/2017"), image = null },
-            new Special{ SpecialId = 5, Title = "10th Years Anniverary", Description = "10th Years Anniverary....", FDate = DateTime.Parse("11/10/2017"), TDate = DateTime.Parse("12/10/2017"), image = null },
-        };
-
+        
         static List<Sale> _saleList = new List<Sale>
         {
             new Sale{ SaleId = 1, CarId = 1, car = _carList[0], CustomerName = "Borothana", Email = "borothana@gmail.com", Phone = "952 846 9047", ZipCode = "55379"
                 , State = "MN", Street1 = "1008 Thrist Lane", PurchasePrice = 37000, PurchaseType = "D", AddUserId = "8728cb3d-8e99-4da6-bc70-2e7995af34ae", AddDate = DateTime.Parse("11/05/2017 11:30 AM")}
         };
 
+        static List<Special> _specialList = new List<Special>
+        {
+            new Special{ SpecialId = 1, Title = "Mid-Sale", Description = "Discount for mid-sale....", FDate = DateTime.Parse("11/15/2017"), TDate = DateTime.Parse("12/31/2017"), image = null },
+            new Special{ SpecialId = 2, Title = "New Year", Description = "Discount for New Year....", FDate = DateTime.Parse("11/01/2017"), TDate = DateTime.Parse("12/01/2017"), image = null },
+            new Special{ SpecialId = 3, Title = "Black Friday", Description = "This Black Friday....", FDate = DateTime.Parse("11/10/2017"), TDate = DateTime.Parse("12/10/2017"), image = null },
+            new Special{ SpecialId = 4, Title = "Mid-Winter Sale", Description = "January is coming, ....", FDate = DateTime.Parse("11/01/2017"), TDate = DateTime.Parse("12/01/2017"), image = null },
+            new Special{ SpecialId = 5, Title = "10th Years Anniverary", Description = "10th Years Anniverary....", FDate = DateTime.Parse("11/10/2017"), TDate = DateTime.Parse("12/10/2017"), image = null },
+        };
 
+        static List<Contact> _contactList = new List<Contact>
+        {
+            new Contact{ ContactId = 1, Name = "Na", Email = "na@gmail.com", Phone = "952 846 1111", Message = "1HGBH41JXMN109187 Message 1"},
+            new Contact{ ContactId = 2, Name = "Ko", Email = "ko@gmail.com", Phone = "952 846 2222", Message = "1HGBH41JXMN109185 Message 2"},
+            new Contact{ ContactId = 3, Name = "My", Email = "my@gmail.com", Phone = "952 846 3333", Message = "1HGBH41JXMN109186 Message 3"},
+        };
+        
         #region "Report"
         public List<InventoryReportVM> GetInventoryReport()
         {

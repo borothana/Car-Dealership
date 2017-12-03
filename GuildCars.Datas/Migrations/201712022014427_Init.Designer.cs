@@ -13,7 +13,7 @@ namespace GuildCars.Datas.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201711231636468_Init"; }
+            get { return "201712022014427_Init"; }
         }
         
         string IMigrationMetadata.Source

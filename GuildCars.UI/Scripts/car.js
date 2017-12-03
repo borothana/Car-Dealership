@@ -6,20 +6,24 @@
                 path == "/sale/list" || path == "/vehicle/list") {
         FillPrice();
         FillYear();
-    } else if (path == "/home/home") {
+    } else if (path == "/home/home" || path == "/") {
         FillHome();
-    }    
+    } else if (path == "/vehicle/edit") {
+            FillModel($("#MakeId").val());
+    }
 });
 
 function GetCurUrl() {
     var path = window.location.pathname;
-    var curUrl = window.location.href.replace(path, "");
+    var curUrl = window.location.protocol + "//" + window.location.host;// window.location.href.replace(path, "");
     return curUrl;
 }
 
 function FillHome(type) {
     $('#divResult').empty();
-    
+
+    var u = GetCurUrl() + '/showcar';
+
     $.ajax({
         type: 'GET',
         url:  GetCurUrl() + '/showcar',
@@ -306,4 +310,25 @@ function checkAndDisplayValidationErrors(input, errorLocation) {
     } else {
         return false;
     }
+}
+
+$("#MakeId").change(function () {
+    FillModel($("#MakeId").val());
+});
+
+function FillModel(makeId) {
+    $("#ModelId").find('option').remove();
+    $.ajax({
+        type: 'GET',
+        url: GetCurUrl() + '/makes/' + makeId,
+        success: function (cars) {
+            $.each(cars, function (index, car) {
+                $('#ModelId').append($('<option>', { value: car.modelId, text: car.description }));
+            });
+        },
+        error: function (xhr, textStatus, errorThrown) {
+
+        }
+    });
+
 }

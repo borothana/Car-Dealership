@@ -23,7 +23,8 @@ namespace GuildCars.Models
         public string Description { get; set; }
         public bool IsFeature { get; set; }
         public byte[] Picture { get; set; }
-
+        
+        public Model model { get; set; }
         public string AddUserId { get; set; }
         public DateTime AddDate { get; set; }
         public string EditUserId { get; set; }

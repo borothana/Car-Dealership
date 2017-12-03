@@ -111,9 +111,9 @@
     <Compile Include="CarRepositoryMock.cs" />
     <Compile Include="CurrentUser.cs" />
     <Compile Include="DBContext\CarDBContext.cs" />
-    <Compile Include="Migrations\201711231636468_Init.cs" />
-    <Compile Include="Migrations\201711231636468_Init.Designer.cs">
-      <DependentUpon>201711231636468_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201712022014427_Init.cs" />
+    <Compile Include="Migrations\201712022014427_Init.Designer.cs">
+      <DependentUpon>201712022014427_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,8 +130,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711231636468_Init.resx">
-      <DependentUpon>201711231636468_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712022014427_Init.resx">
+      <DependentUpon>201712022014427_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
